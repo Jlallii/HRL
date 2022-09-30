@@ -3,14 +3,15 @@ import './App.css';
 
 function App() {
   const [age,setAge] = useState('')
-  const [hrl,setHRL] = useState('')
+  const [lower,setLower] = useState(0)
+  const [upper,setUpper] = useState(0)
 
   function calculate(e) {
     e.preventDefault()
     const Upper = (220-age) * 0.85
-    setHRL(Upper)
+    setLower(Upper)
     const Lower = (220-age) * 0.65
-    setHRL(Lower)
+    setUpper(Lower)
 
   }
 
@@ -20,12 +21,17 @@ function App() {
       <form onSubmit={calculate}>
         <div>
           <label>Age</label>
-          <input value={age} onChange={e => setAge(e.target.value)}/>
         </div>
+          <div>
+            <input value={age} onChange={e => setAge(e.target.value)}/>
+          </div>
         <div>
           <label>Heart rate limits</label>
-          <output>{hrl}</output>
         </div>
+          <div>
+            <output>{upper}-{lower}</output>
+          </div>
+
         <button>Calculate</button>
       </form>
     </div>
